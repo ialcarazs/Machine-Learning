@@ -1,0 +1,11 @@
+,variable,tipo
+0,sex,cat
+1,length,num
+2,diameter,num
+3,height,num
+4,whole_weight,num
+5,shucked_weight,num
+6,viscera_weight,num
+7,shell_weight,num
+8,rings,num
+9,age,num
