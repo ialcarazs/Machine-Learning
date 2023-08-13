@@ -1,0 +1,60 @@
+import random
+import time
+
+personajes = [
+    {'Dani': 'Personaje1', 'tipo': 'p_masc'},
+    {'Marga': 'Personaje2', 'tipo': 'otras'},
+    {'Adela': 'Personaje3', 'tipo': 'p_masc'},
+    {'Ismael A.': 'Personaje4', 'tipo': 'otras'},
+    {'Ana': 'Personaje5', 'tipo': 'p_masc'},
+    {'Ismael M.': 'Personaje6', 'tipo': 'otras'},
+    {'Thais': 'Personaje7', 'tipo': 'p_masc'},
+    {'Josep': 'Personaje8', 'tipo': 'otras'},
+    {'Maria A.': 'Personaje9', 'tipo': 'p_masc'},
+    {'Jordi': 'Personaje10', 'tipo': 'otras'},
+    {'Leti': 'Personaje9', 'tipo': 'p_masc'},
+    {'Salva': 'Personaje10', 'tipo': 'otras'}
+]
+
+tareas = {
+    'p_masc': ['Ramón García', 'Sumo'],
+    'otras': ['Vaca1']
+}
+
+random.shuffle(personajes)  # Mezclar la lista de personajes de manera aleatoria
+
+print("Asignando tareas...")
+
+asignaciones = []
+
+for i in range(len(personajes)):
+    personaje = personajes[i]
+    tipo = personaje['tipo']
+    
+    if tipo in tareas and len(tareas[tipo]) > 0:
+        if 'Tarea1' in tareas[tipo] or 'Tarea2' in tareas[tipo]:
+            tarea = random.choice(['Tarea1', 'Tarea2'])  # Solo personajes p_mascs pueden realizar Tarea1 y Tarea2
+        else:
+            tarea = random.choice(tareas[tipo])  # Resto de tareas asignables a ambos tipos
+        tareas[tipo].remove(tarea)  # Eliminar la tarea asignada para evitar la repetición
+    else:
+        tarea = "No disponible"  # Si no hay tareas disponibles para el tipo del personaje
+    
+    asignaciones.append((personaje['nombre'], tarea))  # Agregar la asignación a la lista de asignaciones
+    
+    print("...")
+    time.sleep(2)  # Retardo de 2 segundos para generar suspense
+    
+    print(f"Atención: ¡{personaje['nombre']} tiene asignada la siguiente tarea!")
+    time.sleep(1)  # Retardo de 1 segundo
+    
+    print(f"¡{personaje['nombre']} debe realizar... {tarea}!")
+    time.sleep(2)  # Retardo de 2 segundos para crear más suspense
+    print()
+
+print("Todas las tareas han sido asignadas.\n")
+
+print("Listado de asignaciones:")
+for asignacion in asignaciones:
+    personaje, tarea = asignacion
+    print(f"{personaje}: {tarea}")
